@@ -18,7 +18,7 @@ async function getApp() {
 
   var app = express();
 
-  var port = normalizePort(process.env.PORT || '3000');
+  var port = normalizePort(process.env.PORT || '8080');
   app.set('port', port);
 
   // view engine setup
