@@ -34,6 +34,6 @@ jobs:
       with:
         app-name: MyNodeJsAppproject
         slot-name: Production
-        publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_9477E09045D9413C97243CA330C7C93F }}
+        publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_85DB4FE1ADAB4FFAB57A39D9E2DE264A }}
         package: .
 
