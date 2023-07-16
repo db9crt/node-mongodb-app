@@ -227,5 +227,5 @@ resource "azurerm_app_service_source_control" "sourcecontrol" {
 }
   resource "azurerm_source_control_token" "dobble_token" {
   type  = "GitHub"
-  token = "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"
+  token = "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"
 }
