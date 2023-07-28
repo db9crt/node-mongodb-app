@@ -8,6 +8,10 @@ terraform {
       source = "hashicorp/azuread"
       version = "2.39.0"
     }
+    resource_group_name = ""
+    storage_account_name = ""
+    container_name = ""
+    key = ""
   }
 }
 provider "azurerm" {
