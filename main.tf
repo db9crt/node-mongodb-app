@@ -25,8 +25,8 @@ provider "azurerm" {
   }
 }
 data "azurerm_client_config" "current" {}
-resource "azurerm_key_vault" "keyvaultprojdbstrne" {
-  name                        = "keyvaultprojdbstrne"
+resource "azurerm_key_vault" "keyvaultprojdb" {
+  name                        = "keyvaultprojdb"
   location                    = azurerm_resource_group.project_rg.location
   resource_group_name         = azurerm_resource_group.project_rg.name
   enabled_for_disk_encryption = true
@@ -62,7 +62,7 @@ resource "azurerm_key_vault" "keyvaultprojdbstrne" {
 }
 
 resource "azurerm_key_vault_access_policy" "project-principalkey" {
-  key_vault_id = azurerm_key_vault.keyvaultprojdbstrne.id
+  key_vault_id = azurerm_key_vault.keyvaultprojdb.id
   tenant_id    = data.azurerm_client_config.current.tenant_id
   object_id    = azurerm_windows_web_app.MyNodeJsApp.identity.0.principal_id
 
@@ -79,7 +79,7 @@ data "azuread_user" "user" {
   user_principal_name  = "db9crt_bolton.ac.uk#EXT#@db9crt.onmicrosoft.com"
 }
 resource "azurerm_key_vault_access_policy" "user-principalkey" {
-  key_vault_id = azurerm_key_vault.keyvaultprojdbstrne.id
+  key_vault_id = azurerm_key_vault.keyvaultprojdb.id
   tenant_id    = data.azurerm_client_config.current.tenant_id
   object_id    = data.azuread_user.user.object_id
 
@@ -141,7 +141,7 @@ data "azurerm_cosmosdb_account" "projectcosmosdbacct"{
 resource "azurerm_key_vault_secret" "projectsecretnewer" {
   name         = "projectsecretnewer"
   value        = azurerm_cosmosdb_account.projectcosmosdbacct.connection_strings[0]
-  key_vault_id = azurerm_key_vault.keyvaultprojdbstrne.id
+  key_vault_id = azurerm_key_vault.keyvaultprojdb.id
 }
 resource "azurerm_cosmosdb_mongo_database" "project_cosmosdb" {
   name                = "project_cosmosdb"
@@ -167,7 +167,7 @@ resource "azurerm_windows_web_app" "MyNodeJsApp" {
     "WEBSITE_NODE_DEFAULT_VERSION" = "~16"
     "SCM_DO_BUILD_DURING_DEPLOYMENT" = true
     "DATABASE_NAME" = azurerm_cosmosdb_mongo_database.project_cosmosdb.name
-    "DATABASE_URL" ="@Microsoft.KeyVault(SecretUri=${azurerm_key_vault.keyvaultprojdbstrne.vault_uri}secrets/${azurerm_key_vault_secret.projectsecretnewer.name}/${azurerm_key_vault_secret.projectsecretnewer.version})"  //"@Microsoft.KeyVault(SecretUri=https://keyvaultprojectdbstring.vault.azure.net/secrets/projectsecret)"//azurerm_cosmosdb_account.projectcosmosdbacct.connection_strings[0]  
+    "DATABASE_URL" ="@Microsoft.KeyVault(SecretUri=${azurerm_key_vault.keyvaultprojdb.vault_uri}secrets/${azurerm_key_vault_secret.projectsecretnewer.name}/${azurerm_key_vault_secret.projectsecretnewer.version})"  //"@Microsoft.KeyVault(SecretUri=https://keyvaultprojectdbstring.vault.azure.net/secrets/projectsecret)"//azurerm_cosmosdb_account.projectcosmosdbacct.connection_strings[0]  
   }
   identity {
     type = "SystemAssigned"
