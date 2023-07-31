@@ -8,7 +8,7 @@ terraform {
       source = "hashicorp/azuread"
       version = "2.39.0"
     }
-   
+   }
 }
 provider "azurerm" {
     subscription_id = "27797fca-63b0-46fd-87c7-0757c81e041a"
