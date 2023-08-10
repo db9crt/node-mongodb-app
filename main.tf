@@ -211,7 +211,7 @@ resource "azurerm_cosmosdb_mongo_collection" "projectmongoCollection" {
 
 
 
-resource "azurerm_app_service_source_control" "sourcecontrol" {
+/*resource "azurerm_app_service_source_control" "sourcecontrol" {
   app_id   = azurerm_windows_web_app.MyNodeJsApp.id
   repo_url = "https://github.com/db9crt/node-mongodb-app"
   branch   = "main"
@@ -228,4 +228,4 @@ resource "azurerm_app_service_source_control" "sourcecontrol" {
   resource "azurerm_source_control_token" "dobble_token" {
   type  = "GitHub"
   token = "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"
-}
+}*/
