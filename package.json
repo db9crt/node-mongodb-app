@@ -3,10 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "build": "echo 'build script executed'" 
     "start": "node ./bin/www"
-    
-    "build": "echo 'build script executed" 
- 
   },
   "dependencies": {
     "@azure/identity": "^2.0.4",
