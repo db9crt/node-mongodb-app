@@ -4,6 +4,9 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www"
+    "scripts": { 
+    "build": "echo 'build script executed'" 
+ }, 
   },
   "dependencies": {
     "@azure/identity": "^2.0.4",
