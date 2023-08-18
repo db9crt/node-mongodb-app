@@ -7,6 +7,12 @@ trigger:
 - main
 
 pool:
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
+    StoreAsTar: true
   vmImage: ubuntu-latest
 
 steps:
