@@ -223,7 +223,7 @@ resource "azurerm_app_service_source_control" "sourcecontrol" {
 
     }
   }
-  depends_on = [ azurerm_source_control_token.dobble_token ]
+  depends_on = [ azurerm_source_control_token.dobble_token1 ]
 }
   resource "azurerm_source_control_token" "dobble_token1" {
   type  = "GitHub"
