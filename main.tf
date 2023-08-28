@@ -194,22 +194,6 @@ resource "azurerm_cosmosdb_mongo_collection" "projectmongoCollection" {
   }
 }
 
-/*resource "azurerm_app_service" "project_appservice" {
-  name                = "appserviceproject"
-  location            = azurerm_resource_group.project_rg.location
-  resource_group_name = azurerm_resource_group.project_rg.name
-  app_service_plan_id = azurerm_service_plan.project_appplan.id
-  
-  
-  app_settings = {
-    "DATABASE_NAME" = azurerm_cosmosdb_mongo_database.project_cosmosdb.name
-    
-  }
-   
-}*/
-
-
-
 
 resource "azurerm_app_service_source_control" "sourcecontrol" {
   app_id   = azurerm_windows_web_app.MyNodeJsApp.id
@@ -223,14 +207,23 @@ resource "azurerm_app_service_source_control" "sourcecontrol" {
 
     }
   }
-  depends_on = [ azurerm_source_control_token.dobble_token1 ]
+//  depends_on = [ azurerm_source_control_token.dobble_token1 ]
 }
-  resource "azurerm_source_control_token" "dobble_token1" {
+/*  resource "azurerm_source_control_token" "dobble_token1" {
   type  = "GitHub"
   token = "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"
-}
+}*/
 import {
   id = "/subscriptions/27797fca-63b0-46fd-87c7-0757c81e041a/resourceGroups/project_rg/providers/Microsoft.Web/sites/MyNodeJsAppproject"
   to = azurerm_app_service_source_control.sourcecontrol
   
+}
+import {
+  id = "/subscriptions/27797fca-63b0-46fd-87c7-0757c81e041a/resourceGroups/project_rg"
+  to = azurerm_resource_group.project_rg
+  
+}
+import{
+  id ="/subscriptions/27797fca-63b0-46fd-87c7-0757c81e041a/resourceGroups/project_rg/providers/Microsoft.KeyVault/vaults/keyvaultprojdbstr"
+  to= azurerm_key_vault.keyvaultprojdbstr
 }
