@@ -1,0 +1,1 @@
+terraform import azurerm_app_service_source_control.sourcecontrol     /subscriptions/27797fca-63b0-46fd-87c7-0757c81e041a/resourceGroups/project_rg/providers/Microsoft.Web/sites/MyNodeJsAppproject
