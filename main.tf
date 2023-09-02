@@ -18,7 +18,7 @@ provider "azurerm" {
     use_msi = true
     features {
     key_vault {
-      recover_soft_deleted_key_vaults = false
+      recover_soft_deleted_key_vaults = true
       //purge_soft_deleted_secrets_on_destroy    = true
      // recover_soft_deleted_key_vaults = true
     }
