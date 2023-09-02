@@ -8,7 +8,14 @@ terraform {
       source = "hashicorp/azuread"
       version = "2.39.0"
     }
+
    }
+backend "azurerm" {
+    resource_group_name = ""
+    storage_account_name = "" 
+    container_name       = "" 
+    key                  = ""  
+  }
 }
 provider "azurerm" {
     subscription_id = "27797fca-63b0-46fd-87c7-0757c81e041a"
@@ -24,6 +31,7 @@ provider "azurerm" {
     }
   }
 }
+
 data "azurerm_client_config" "current" {}
 resource "azurerm_key_vault" "keyabcd" {
   name                        = "keyabcd"
