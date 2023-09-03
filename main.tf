@@ -225,9 +225,11 @@ resource "azurerm_app_service_source_control" "sourcecontrol" {
   type  = "GitHub"
   token = "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"
 }
-data "azurerm_ssh_public_key" "sshkey" {
+resource "azurerm_ssh_public_key" "sshkey" {
   name                = "sshkey"
   resource_group_name = "project_rg"
-  
+  location = "Uk South"
+  public_key = file("~/.ssh/id_rsa.pub")
+ 
 }
 
