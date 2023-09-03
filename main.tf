@@ -227,7 +227,7 @@ resource "azurerm_app_service_source_control" "sourcecontrol" {
 }
 data "azurerm_ssh_public_key" "shhkey" {
   name                = "shhkey"
-  resource_group_name = azurerm_resource_group.project_rg
+  resource_group_name = "project_rg"
   
 }
 
