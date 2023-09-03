@@ -229,7 +229,7 @@ resource "azurerm_ssh_public_key" "sshkey" {
   name                = "sshkey"
   resource_group_name = "project_rg"
   location = "Uk South"
-  public_key = file("~/.ssh/id_rsa.pub")
+  public_key = file("/c/Users/annie/.ssh/id_rsa.pub")
  
 }
 
