@@ -221,9 +221,9 @@ resource "azurerm_app_service_source_control" "sourcecontrol" {
    id = "/subscriptions/27797fca-63b0-46fd-87c7-0757c81e041a/resourceGroups/project_rg/providers/Microsoft.Web/sites/MyNodeJsAppproject"
    to = azurerm_source_control_token.dobble_token1
  }*/
-  resource "azurerm_source_control_token" "dobble_token1" {
+ /* resource "azurerm_source_control_token" "dobble_token1" {
   type  = "GitHub"
   token = "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"
-}
+}*/
 
 
