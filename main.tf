@@ -203,7 +203,7 @@ resource "azurerm_cosmosdb_mongo_collection" "projectmongoCollection" {
 }
 
 
-resource "azurerm_app_service_source_control" "sourcecontrol" {
+/*resource "azurerm_app_service_source_control" "sourcecontrol" {
   app_id   = azurerm_windows_web_app.MyNodeJsApp.id
   repo_url = "https://github.com/db9crt/node-mongodb-app"
   branch   = "main"
@@ -216,15 +216,15 @@ resource "azurerm_app_service_source_control" "sourcecontrol" {
     }
   }
   depends_on = [ azurerm_source_control_token.dobble_token1 ]
-}
+}*/
 /*import {
    id = "/subscriptions/27797fca-63b0-46fd-87c7-0757c81e041a/resourceGroups/project_rg/providers/Microsoft.Web/sites/MyNodeJsAppproject"
    to = azurerm_source_control_token.dobble_token1
  }*/
-  resource "azurerm_source_control_token" "dobble_token1" {
+/*  resource "azurerm_source_control_token" "dobble_token1" {
   type  = "GitHub"
   token = "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"
-}
+}*/
 /*resource "azurerm_ssh_public_key" "sshkey" {
   name                = "sshkey"
   resource_group_name = "project_rg"
