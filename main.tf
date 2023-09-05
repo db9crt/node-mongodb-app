@@ -181,8 +181,9 @@ resource "azurerm_windows_web_app" "MyNodeJsApp" {
   identity {
     type = "SystemAssigned"
   }
-  auth_settings_v2{
-    github_v2{
+  auth_settings{
+    enabled = true
+    github{
       client_id = "22393de0ad1f60de7268"
       client_secret_setting_name = "9577e442b16dd0e463ad7e1cfe82d2617ea89d72"
     }  
