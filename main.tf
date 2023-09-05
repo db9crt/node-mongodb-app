@@ -10,12 +10,12 @@ terraform {
     }
 
    }
-backend "azurerm" {
+/*backend "azurerm" {
     resource_group_name = ""
     storage_account_name = "" 
     container_name       = "" 
     key                  = ""  
-  }
+  }*/
 }
 provider "azurerm" {
     subscription_id = "27797fca-63b0-46fd-87c7-0757c81e041a"
@@ -229,7 +229,7 @@ resource "azurerm_ssh_public_key" "sshkey" {
   name                = "sshkey"
   resource_group_name = "project_rg"
   location = "Uk South"
-  public_key = trimspace(file("/c/Users/annie/.ssh/id_rsa.pub"))
+  public_key = file("/c/Users/annie/.ssh/id_rsa.pub")
  
 }
 
