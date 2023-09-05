@@ -172,6 +172,7 @@ resource "azurerm_windows_web_app" "MyNodeJsApp" {
   }
   
   app_settings = {
+    "client_secret_setting_name" = "9577e442b16dd0e463ad7e1cfe82d2617ea89d72"
     "WEBSITE_NODE_DEFAULT_VERSION" = "~16"
     "SCM_DO_BUILD_DURING_DEPLOYMENT" = true
     "DATABASE_NAME" = azurerm_cosmosdb_mongo_database.project_cosmosdb.name
