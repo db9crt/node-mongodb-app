@@ -26,7 +26,7 @@ provider "azurerm" {
     features {
     key_vault {
       recover_soft_deleted_key_vaults = true
-      purge_soft_delete_on_destroy    = true
+      //purge_soft_delete_on_destroy    = true
      //purge_protection_enabled = false
      // recover_soft_deleted_key_vaults = true
     }
@@ -34,8 +34,8 @@ provider "azurerm" {
 }
 
 data "azurerm_client_config" "current" {}
-resource "azurerm_key_vault" "lotresult" {
-  name                        = "lotresult"
+resource "azurerm_key_vault" "lotresults" {
+  name                        = "lotresults"
   location                    = azurerm_resource_group.project_rg.location
   resource_group_name         = azurerm_resource_group.project_rg.name
   enabled_for_disk_encryption = true
@@ -71,7 +71,7 @@ resource "azurerm_key_vault" "lotresult" {
 }
 
 resource "azurerm_key_vault_access_policy" "project-principalkey" {
-  key_vault_id = azurerm_key_vault.lotresult.id
+  key_vault_id = azurerm_key_vault.lotresults.id
   tenant_id    = data.azurerm_client_config.current.tenant_id
   object_id    = azurerm_windows_web_app.MyNodeJsApp.identity.0.principal_id
 
@@ -88,7 +88,7 @@ data "azuread_user" "user" {
   user_principal_name  = "db9crt_bolton.ac.uk#EXT#@db9crt.onmicrosoft.com"
 }
 resource "azurerm_key_vault_access_policy" "user-principalkey" {
-  key_vault_id = azurerm_key_vault.lotresult.id
+  key_vault_id = azurerm_key_vault.lotresults.id
   tenant_id    = data.azurerm_client_config.current.tenant_id
   object_id    = data.azuread_user.user.object_id
 
@@ -150,7 +150,7 @@ data "azurerm_cosmosdb_account" "projectcosmosdbacct"{
 resource "azurerm_key_vault_secret" "projectsecretnewer" {
   name         = "projectsecretnewer"
   value        = azurerm_cosmosdb_account.projectcosmosdbacct.connection_strings[0]
-  key_vault_id = azurerm_key_vault.lotresult.id
+  key_vault_id = azurerm_key_vault.lotresults.id
 }
 resource "azurerm_cosmosdb_mongo_database" "project_cosmosdb" {
   name                = "project_cosmosdb"
@@ -177,7 +177,7 @@ resource "azurerm_windows_web_app" "MyNodeJsApp" {
     "WEBSITE_NODE_DEFAULT_VERSION" = "~16"
     "SCM_DO_BUILD_DURING_DEPLOYMENT" = true
     "DATABASE_NAME" = azurerm_cosmosdb_mongo_database.project_cosmosdb.name
-    "DATABASE_URL" ="@Microsoft.KeyVault(SecretUri=${azurerm_key_vault.lotresult.vault_uri}secrets/${azurerm_key_vault_secret.projectsecretnewer.name}/${azurerm_key_vault_secret.projectsecretnewer.version})"  //"@Microsoft.KeyVault(SecretUri=https://lotresultectdbstring.vault.azure.net/secrets/projectsecret)"//azurerm_cosmosdb_account.projectcosmosdbacct.connection_strings[0]  
+    "DATABASE_URL" ="@Microsoft.KeyVault(SecretUri=${azurerm_key_vault.lotresults.vault_uri}secrets/${azurerm_key_vault_secret.projectsecretnewer.name}/${azurerm_key_vault_secret.projectsecretnewer.version})"  //"@Microsoft.KeyVault(SecretUri=https://lotresultsectdbstring.vault.azure.net/secrets/projectsecret)"//azurerm_cosmosdb_account.projectcosmosdbacct.connection_strings[0]  
   }
   identity {
     type = "SystemAssigned"
@@ -224,13 +224,13 @@ resource "azurerm_app_service_source_control" "sourcecontrol" {
 
     }
   }
-  depends_on = [ azurerm_source_control_token.dobble_token1 ]
+  depends_on = [ azurerm_source_control_token.dobble_tokens ]
 }
 /*import {
    id = "/subscriptions/27797fca-63b0-46fd-87c7-0757c81e041a/resourceGroups/project_rg/providers/Microsoft.Web/sites/MyNodeJsAppproject"
-   to = azurerm_source_control_token.dobble_token1
+   to = azurerm_source_control_token.dobble_tokens
  }*/
-  resource "azurerm_source_control_token" "dobble_token1" {
+  resource "azurerm_source_control_token" "dobble_tokens" {
   type  = "GitHub"
   token = "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"
 }
