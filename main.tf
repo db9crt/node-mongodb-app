@@ -73,7 +73,7 @@ resource "azurerm_key_vault" "littleres" {
 resource "azurerm_key_vault_access_policy" "project-principalkey" {
   key_vault_id = azurerm_key_vault.littleres.id
   tenant_id    = data.azurerm_client_config.current.tenant_id
-  object_id    = azurerm_windows_web_app.MyNodeJsApp.identity.0.principal_id
+  object_id    = azurerm_windows_web_app.MyNodeJsAppproject.identity.0.principal_id
 
   secret_permissions = [
     "Get", "List",  "Set",
@@ -213,7 +213,7 @@ resource "azurerm_cosmosdb_mongo_collection" "projectmongoCollection" {
 
 
   resource "azurerm_app_service_source_control" "sourcecontrol" {
-  app_id   = azurerm_windows_web_app.MyNodeJsApp.id
+  app_id   = azurerm_windows_web_app.MyNodeJsAppproject.id
   repo_url = "https://github.com/db9crt/node-mongodb-app"
   branch   = "main"
   github_action_configuration {
