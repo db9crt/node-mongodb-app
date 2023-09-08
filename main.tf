@@ -159,7 +159,7 @@ resource "azurerm_cosmosdb_mongo_database" "project_cosmosdb" {
   throughput          = 400
   depends_on = [ azurerm_cosmosdb_account.projectcosmosdbacct ]
 }
-resource "azurerm_windows_web_app" "MyNodeJsApp" {
+resource "azurerm_windows_web_app" "MyNodeJsAppproject" {
   name                = "MyNodeJsAppproject"
   resource_group_name = azurerm_resource_group.project_rg.name
   location            = azurerm_service_plan.project_appplan.location
